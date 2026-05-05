@@ -38,6 +38,8 @@ nav{z-index:300;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);bo
 .nav-wordmark{color:#f74e45;letter-spacing:-.02em;font-size:18px;font-weight:900;font-family:var(--font-logo)}
 .nav-slash{color:var(--text-3);margin:0 1px;font-weight:400}
 .nav-context{color:var(--text-3);font-size:13px;font-weight:500}
+.nav-neuro-logo-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:6px 10px;display:flex;align-items:center}
+.nav-neuro-logo{height:18px;width:auto;display:block;background:transparent}
 .nav-links{gap:1.75rem;list-style:none;display:flex}
 .nav-links a{color:var(--text-2);font-size:13px;font-weight:600;text-decoration:none;transition:color .18s}
 .nav-links a:hover{color:var(--black)}
@@ -67,10 +69,14 @@ section{position:relative}
 
 /* HERO */
 #hero{border-bottom:1px solid var(--border);min-height:100vh;padding:0}
-.hero-brand-stage{pointer-events:none;text-align:center;z-index:0;height:calc(100vh - 64px);transform:translateY(calc(var(--hero-progress)*-72px)) scale(calc(1 - (var(--hero-progress)*.16)));opacity:max(0,calc(1 - (var(--hero-progress)*2.2)));filter:blur(calc(var(--hero-progress)*.6px));flex-direction:column;justify-content:center;align-items:center;gap:10px;display:flex;position:sticky;top:64px}
+.hero-brand-stage{pointer-events:none;text-align:center;z-index:2;height:calc(100vh - 64px);transform:translateY(calc(var(--hero-progress)*-72px)) scale(calc(1 - (var(--hero-progress)*.16)));opacity:max(0,calc(1 - (var(--hero-progress)*2.2)));filter:blur(calc(var(--hero-progress)*.6px));flex-direction:column;justify-content:center;align-items:center;gap:10px;display:flex;position:sticky;top:64px}
 .hero-scrollspace{height:120vh}
-.hero-brand{font-family:var(--font-logo);letter-spacing:-.06em;color:#f74e45;font-size:clamp(7.5rem,26vw,18rem);font-weight:900;line-height:.78}
-.hero-brand-sub{font-family:var(--font-logo);font-size:clamp(1.2rem,3vw,2.2rem);font-weight:900;color:var(--text-3);letter-spacing:-.02em;margin-top:.75rem}
+.hero-brand-lottie-wrap{width:min(820px,92vw);aspect-ratio:732/486;max-height:46vh;display:flex;align-items:center;justify-content:center;transform:translateY(-8px)}
+.hero-brand-lottie{width:100%;height:auto;max-width:100%;display:block}
+.hero-brand-lottie-wrap svg{width:100%!important;height:auto!important;display:block}
+.hero-brand-sub{font-family:var(--font-logo);font-size:clamp(1.2rem,3vw,2.2rem);font-weight:900;color:var(--text-3);letter-spacing:-.02em;margin-top:.6rem;display:flex;align-items:center;justify-content:center;gap:.55rem}
+.hero-brand-sub .para-word{font-family:'Satoshi',-apple-system,system-ui,sans-serif;font-weight:700;letter-spacing:-.01em}
+.hero-neuro-logo-inline{height:30px;width:auto;display:block;background:transparent}
 .hero-content{border-bottom:1px solid var(--border);z-index:2;background:#fff;padding:8rem 0 6rem;position:relative}
 .hero-main{max-width:820px}
 .hero-inline-brand{font-family:var(--font-logo);letter-spacing:-.04em;color:#f74e45;opacity:clamp(0,calc((var(--hero-progress)-.82)*8),1);transform:translateY(calc((1 - clamp(0,calc((var(--hero-progress)-.82)*8),1))*10px));margin-bottom:.75rem;font-size:22px;font-weight:900}
@@ -212,7 +218,7 @@ section{position:relative}
 /* STATEMENT */
 .statement-block{background:var(--black);border-radius:var(--radius-lg);padding:3.5rem 3rem;position:relative;overflow:hidden;margin-top:3rem}
 .statement-block:before{content:"";position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:rgba(232,53,26,.07)}
-.statement-text{font-family:var(--font-logo);font-size:clamp(1.4rem,2.8vw,2.2rem);color:#fff;font-weight:900;letter-spacing:-.03em;line-height:1.2;max-width:640px;position:relative;z-index:1}
+.statement-text{font-family:'Satoshi',-apple-system,system-ui,sans-serif;font-size:clamp(1.4rem,2.8vw,2.2rem);color:#fff;font-weight:900;letter-spacing:-.03em;line-height:1.2;max-width:640px;position:relative;z-index:1}
 .statement-text em{color:#f74e45;font-style:normal}
 
 /* CTA FINAL */
@@ -259,7 +265,9 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
   <a href="https://cadu.health" class="nav-brand">
     <span class="nav-wordmark">CADU</span>
     <span class="nav-slash">/</span>
-    <span class="nav-context">Neuro Inclusa</span>
+    <span class="nav-neuro-logo-wrap" aria-label="Neuro Inclusa">
+      <img class="nav-neuro-logo" src="https://www.neuroinclusa.com/assets/logo-neuroinclusa-CL6bNbd7.png" alt="Neuro Inclusa"/>
+    </span>
   </a>
   <ul class="nav-links">
     <li><a href="#problema">O problema</a></li>
@@ -281,8 +289,11 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
   </div>
   <div class="wrap">
     <div class="hero-brand-stage" aria-hidden="true">
-      <div class="hero-brand enter-1">CADU</div>
-      <div class="hero-brand-sub">para Neuro Inclusa</div>
+      <div id="cadu-lottie" class="hero-brand-lottie-wrap enter-1" aria-hidden="true"></div>
+      <div class="hero-brand-sub">
+        <span class="para-word">para</span>
+        <img class="hero-neuro-logo-inline" src="https://www.neuroinclusa.com/assets/logo-neuroinclusa-CL6bNbd7.png" alt="Neuro Inclusa"/>
+      </div>
     </div>
     <div class="hero-scrollspace"></div>
   </div>
@@ -735,6 +746,40 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
 </footer>
 
 <script>
+// SVGator export (Lottie) from caduameplan: `data/cadu-logo-lottie.json`
+// Render in-place without React using lottie-web.
+async function initCaduLottie(){
+  const mount = document.getElementById('cadu-lottie');
+  if(!mount) return;
+  try{
+    const res = await fetch('./cadu-logo-lottie.json', {cache:'no-store'});
+    if(!res.ok) return;
+    const animationData = await res.json();
+    const run = () => {
+      if(!window.lottie) return false;
+      // clear any previous render
+      mount.innerHTML = '';
+      window.lottie.loadAnimation({
+        container: mount,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        animationData,
+        rendererSettings: { preserveAspectRatio: 'xMidYMid meet' },
+      });
+      const svg = mount.querySelector('svg');
+      if(svg) svg.classList.add('hero-brand-lottie');
+      return true;
+    };
+    if(run()) return;
+    // If lottie script is slow, retry a few times.
+    let tries = 0;
+    const t = setInterval(() => {
+      tries += 1;
+      if(run() || tries > 20) clearInterval(t);
+    }, 150);
+  }catch(e){}
+}
 const root = document.documentElement;
 function onScroll(){
   const hero = document.getElementById('hero');
@@ -749,6 +794,16 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
 },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Load lottie-web then init animation
+const s = document.createElement('script');
+s.src = 'https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js';
+s.async = true;
+s.onload = initCaduLottie;
+document.head.appendChild(s);
+
+// In case the script is already cached/available before onload.
+setTimeout(initCaduLottie, 0);
 </script>
 </body>
 </html>
