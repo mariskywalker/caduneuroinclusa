@@ -38,8 +38,6 @@ nav{z-index:300;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);bo
 .nav-wordmark{color:#f74e45;letter-spacing:-.02em;font-size:18px;font-weight:900;font-family:var(--font-logo)}
 .nav-slash{color:var(--text-3);margin:0 1px;font-weight:400}
 .nav-context{color:var(--text-3);font-size:13px;font-weight:500}
-.nav-neuro-logo-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:6px 10px;display:flex;align-items:center}
-.nav-neuro-logo{height:18px;width:auto;display:block;background:transparent}
 .nav-links{gap:1.75rem;list-style:none;display:flex}
 .nav-links a{color:var(--text-2);font-size:13px;font-weight:600;text-decoration:none;transition:color .18s}
 .nav-links a:hover{color:var(--black)}
@@ -69,14 +67,10 @@ section{position:relative}
 
 /* HERO */
 #hero{border-bottom:1px solid var(--border);min-height:100vh;padding:0}
-.hero-brand-stage{pointer-events:none;text-align:center;z-index:2;height:calc(100vh - 64px);transform:translateY(calc(var(--hero-progress)*-72px)) scale(calc(1 - (var(--hero-progress)*.16)));opacity:max(0,calc(1 - (var(--hero-progress)*2.2)));filter:blur(calc(var(--hero-progress)*.6px));flex-direction:column;justify-content:center;align-items:center;gap:10px;display:flex;position:sticky;top:64px}
+.hero-brand-stage{pointer-events:none;text-align:center;z-index:0;height:calc(100vh - 64px);transform:translateY(calc(var(--hero-progress)*-72px)) scale(calc(1 - (var(--hero-progress)*.16)));opacity:max(0,calc(1 - (var(--hero-progress)*2.2)));filter:blur(calc(var(--hero-progress)*.6px));flex-direction:column;justify-content:center;align-items:center;gap:10px;display:flex;position:sticky;top:64px}
 .hero-scrollspace{height:120vh}
-.hero-brand-lottie-wrap{width:min(820px,92vw);aspect-ratio:732/486;max-height:46vh;display:flex;align-items:center;justify-content:center;transform:translateY(-8px)}
-.hero-brand-lottie{width:100%;height:auto;max-width:100%;display:block}
-.hero-brand-lottie-wrap svg{width:100%!important;height:auto!important;display:block}
-.hero-brand-sub{font-family:var(--font-logo);font-size:clamp(1.2rem,3vw,2.2rem);font-weight:900;color:var(--text-3);letter-spacing:-.02em;margin-top:.6rem;display:flex;align-items:center;justify-content:center;gap:.55rem}
-.hero-brand-sub .para-word{font-family:'Satoshi',-apple-system,system-ui,sans-serif;font-weight:700;letter-spacing:-.01em}
-.hero-neuro-logo-inline{height:30px;width:auto;display:block;background:transparent}
+.hero-brand{font-family:var(--font-logo);letter-spacing:-.06em;color:#f74e45;font-size:clamp(7.5rem,26vw,18rem);font-weight:900;line-height:.78}
+.hero-brand-sub{font-family:var(--font-logo);font-size:clamp(1.2rem,3vw,2.2rem);font-weight:900;color:var(--text-3);letter-spacing:-.02em;margin-top:.75rem}
 .hero-content{border-bottom:1px solid var(--border);z-index:2;background:#fff;padding:8rem 0 6rem;position:relative}
 .hero-main{max-width:820px}
 .hero-inline-brand{font-family:var(--font-logo);letter-spacing:-.04em;color:#f74e45;opacity:clamp(0,calc((var(--hero-progress)-.82)*8),1);transform:translateY(calc((1 - clamp(0,calc((var(--hero-progress)-.82)*8),1))*10px));margin-bottom:.75rem;font-size:22px;font-weight:900}
@@ -218,7 +212,7 @@ section{position:relative}
 /* STATEMENT */
 .statement-block{background:var(--black);border-radius:var(--radius-lg);padding:3.5rem 3rem;position:relative;overflow:hidden;margin-top:3rem}
 .statement-block:before{content:"";position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:rgba(232,53,26,.07)}
-.statement-text{font-family:'Satoshi',-apple-system,system-ui,sans-serif;font-size:clamp(1.4rem,2.8vw,2.2rem);color:#fff;font-weight:900;letter-spacing:-.03em;line-height:1.2;max-width:640px;position:relative;z-index:1}
+.statement-text{font-family:var(--font-logo);font-size:clamp(1.4rem,2.8vw,2.2rem);color:#fff;font-weight:900;letter-spacing:-.03em;line-height:1.2;max-width:640px;position:relative;z-index:1}
 .statement-text em{color:#f74e45;font-style:normal}
 
 /* CTA FINAL */
@@ -237,8 +231,8 @@ section{position:relative}
 
 /* FOOTER */
 footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem 1rem;padding:1.5rem 2.5rem;display:flex}
-.footer-left{color:#fff6;font-size:13px;font-weight:700;font-family:'Satoshi',-apple-system,system-ui,sans-serif;max-width:560px;line-height:1.45}
-.footer-right{color:#ffffff2e;font-size:13px;font-family:'Satoshi',-apple-system,system-ui,sans-serif}
+.footer-left{color:#fff6;font-size:13px;font-weight:700;font-family:var(--font-logo);max-width:560px;line-height:1.45}
+.footer-right{color:#ffffff2e;font-size:13px;font-family:var(--font-logo)}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
@@ -265,9 +259,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
   <a href="https://cadu.health" class="nav-brand">
     <span class="nav-wordmark">CADU</span>
     <span class="nav-slash">/</span>
-    <span class="nav-neuro-logo-wrap" aria-label="Neuro Inclusa">
-      <img class="nav-neuro-logo" src="https://www.neuroinclusa.com/assets/logo-neuroinclusa-CL6bNbd7.png" alt="Neuro Inclusa"/>
-    </span>
+    <span class="nav-context">Neuro Inclusa</span>
   </a>
   <ul class="nav-links">
     <li><a href="#problema">O problema</a></li>
@@ -289,11 +281,8 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
   </div>
   <div class="wrap">
     <div class="hero-brand-stage" aria-hidden="true">
-      <div id="cadu-lottie" class="hero-brand-lottie-wrap enter-1" aria-hidden="true"></div>
-      <div class="hero-brand-sub">
-        <span class="para-word">para</span>
-        <img class="hero-neuro-logo-inline" src="https://www.neuroinclusa.com/assets/logo-neuroinclusa-CL6bNbd7.png" alt="Neuro Inclusa"/>
-      </div>
+      <div class="hero-brand enter-1">CADU</div>
+      <div class="hero-brand-sub">para Neuro Inclusa</div>
     </div>
     <div class="hero-scrollspace"></div>
   </div>
@@ -568,6 +557,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
           <li>Gestão com visibilidade real sobre os casos</li>
           <li>Família conectada à evolução de forma organizada</li>
           <li>Trajetória de cada criança documentada e comunicável</li>
+          <li>Menos dependência de alinhamentos informais</li>
           <li>Decisões baseadas em dados longitudinais</li>
         </ul>
       </div>
@@ -611,7 +601,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
     <div class="reveal">
       <p class="eyebrow">Modelo de uso</p>
       <h2 class="section-headline">Adaptado à Neuro Inclusa.</h2>
-      <p class="section-body" style="margin-top:.5rem;max-width:46rem">O Cadu não tem um modelo fixo. O modelo é adaptado ao tamanho da operação, considerando número de pacientes e equipe envolvida.</p>
+      <p class="section-body" style="margin-top:.5rem;max-width:46rem">O Cadu não tem um modelo fixo. O modelo é adaptado ao tamanho da clínica, considerando número de pacientes e equipe envolvida. A conversa começa por aí.</p>
     </div>
     <div class="modelo-grid">
       <div class="modelo-items">
@@ -664,7 +654,6 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
       <p class="eyebrow">Piloto</p>
       <h2 class="section-headline">Começar é simples.</h2>
       <p class="section-body" style="max-width:46rem;margin-top:.5rem">O piloto começa com uma parte da clínica. Equipe reduzida, grupo de pacientes selecionado, sem necessidade de mudança estrutural. Em 3 meses você já tem dados reais para decidir.</p>
-      <p class="section-body" style="max-width:46rem;margin-top:.75rem;font-weight:700;color:var(--text)">O piloto é desenhado para rodar com mínima interferência na rotina da clínica.</p>
     </div>
     <div class="piloto-grid">
       <ol class="piloto-steps">
@@ -724,28 +713,12 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
   </div>
 </section>
 
-<!-- COMO COMEÇAMOS -->
-<section id="como-comecamos" class="sec sec-white">
-  <div class="wrap">
-    <div class="reveal" style="max-width:720px">
-      <p class="eyebrow">Como começamos</p>
-      <h2 class="section-headline">Um começo leve e sem atrito.</h2>
-      <ul class="urgencia-list" style="margin-top:1.25rem;max-width:42rem">
-        <li>Definimos um grupo inicial de pacientes</li>
-        <li>Selecionamos parte da equipe</li>
-        <li>Fazemos onboarding rápido</li>
-        <li>Iniciamos o acompanhamento estruturado</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <!-- CTA FINAL -->
 <section id="proximo" class="section-proximo">
   <div class="cta-blob" aria-hidden="true"></div>
   <div class="wrap" style="text-align:center">
     <p class="cta-eyebrow reveal">CADU × Neuro Inclusa</p>
-    <h2 class="cta-headline reveal d1">Vamos estruturar esse piloto juntos?</h2>
+    <h2 class="cta-headline reveal d1">Vamos testar isso na prática com a Neuro Inclusa?</h2>
     <p class="cta-sub reveal d2">
       Começa pequeno, sem compromisso de escala. Em 3 meses a Neuro Inclusa tem dados reais para decidir os próximos passos.
     </p>
@@ -765,40 +738,6 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
 </footer>
 
 <script>
-// SVGator export (Lottie) from caduameplan: `data/cadu-logo-lottie.json`
-// Render in-place without React using lottie-web.
-async function initCaduLottie(){
-  const mount = document.getElementById('cadu-lottie');
-  if(!mount) return;
-  try{
-    const res = await fetch('./cadu-logo-lottie.json', {cache:'no-store'});
-    if(!res.ok) return;
-    const animationData = await res.json();
-    const run = () => {
-      if(!window.lottie) return false;
-      // clear any previous render
-      mount.innerHTML = '';
-      window.lottie.loadAnimation({
-        container: mount,
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        animationData,
-        rendererSettings: { preserveAspectRatio: 'xMidYMid meet' },
-      });
-      const svg = mount.querySelector('svg');
-      if(svg) svg.classList.add('hero-brand-lottie');
-      return true;
-    };
-    if(run()) return;
-    // If lottie script is slow, retry a few times.
-    let tries = 0;
-    const t = setInterval(() => {
-      tries += 1;
-      if(run() || tries > 20) clearInterval(t);
-    }, 150);
-  }catch(e){}
-}
 const root = document.documentElement;
 function onScroll(){
   const hero = document.getElementById('hero');
@@ -813,16 +752,6 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
 },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// Load lottie-web then init animation
-const s = document.createElement('script');
-s.src = 'https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js';
-s.async = true;
-s.onload = initCaduLottie;
-document.head.appendChild(s);
-
-// In case the script is already cached/available before onload.
-setTimeout(initCaduLottie, 0);
 </script>
 </body>
 </html>
