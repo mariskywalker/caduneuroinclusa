@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CADU: como abrir</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 40rem;
+      margin: 2.5rem auto;
+      padding: 0 1.25rem;
+      line-height: 1.55;
+      color: #1a1512;
+      background: #f7f5f0;
+    }
+    .easy {
+      background: #fff8e6;
+      border: 1px solid #e8d4a8;
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .easy strong { display: block; margin-bottom: 0.5rem; font-size: 1.05rem; }
+    .easy ol { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+    .easy li { margin: 0.35rem 0; }
+    .fname { font-family: ui-monospace, monospace; font-size: 0.9rem; background: #fff; padding: 0.1rem 0.35rem; border-radius: 4px; border: 1px solid #e0dccf; }
+    h1 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+    h2 { font-size: 0.95rem; margin: 1.75rem 0 0.5rem; }
+    code, pre {
+      font-size: 0.8rem;
+      background: #eae6df;
+      border-radius: 6px;
+    }
+    code { padding: 0.15rem 0.35rem; }
+    pre {
+      padding: 0.85rem 1rem;
+      overflow-x: auto;
+      border: 1px solid #ddd8cf;
+    }
+    a { color: #c45c54; }
+    ul { padding-left: 1.1rem; }
+    .note { font-size: 0.88rem; color: #5c5650; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="easy">
+    <strong>Forma mais simples (recomendada)</strong>
+    <p style="margin: 0 0 0.6rem;">Se não quiser usar o terminal à mão:</p>
+    <ol>
+      <li>No <strong>Finder</strong>, abra a pasta deste projeto no Ambiente de Trabalho (ou onde a guardou).</li>
+      <li>Procure o ficheiro <span class="fname">abrir-instituto.command</span>.</li>
+      <li><strong>Primeira vez no Mac:</strong> clique com o botão direito no ficheiro → <strong>Abrir</strong> → confirme “Abrir”. (Isto evita o bloqueio de segurança.)</li>
+      <li>Depois pode usar <strong>duplo clique</strong>. Abre-se uma janela preta (Terminal), o site prepara-se e o <strong>browser abre sozinho</strong>.</li>
+      <li><strong>Não feche</strong> a janela preta enquanto estiver a ver o site. Para parar: na janela preta, prima <strong>Ctrl+C</strong>.</li>
+    </ol>
+    <p style="margin: 0.75rem 0 0; font-size: 0.88rem; color: #5c5650;">Precisa de ter o <strong>Node.js</strong> instalado (grátis): <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a> → botão <strong>LTS</strong>.</p>
+  </div>
+
+  <h1>Abrir o projeto no navegador (manual)</h1>
+  <p>As rotas <strong>Next.js</strong> (<code>/</code>, <code>/plano</code>, <code>/memory</code>…) <strong>só funcionam com o servidor a correr</strong>. Abrir pastas no Finder não inicia o site.</p>
+
+  <h2>1) Terminal (na pasta deste projeto)</h2>
+  <p>Primeira vez (instalar dependências):</p>
+  <pre>npm run install-web</pre>
+  <p>Subir o site:</p>
+  <pre>npm run dev</pre>
+  <p>Ou, se preferir entrar na pasta <code>web</code>:</p>
+  <pre>cd web
+npm install
+npm run dev</pre>
+
+  <h2>2) No navegador</h2>
+  <ul>
+    <li><a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a> (atlas)</li>
+    <li><a href="http://localhost:3000/plano" target="_blank" rel="noopener">http://localhost:3000/plano</a> (apresentação Master Plan, editável em React)</li>
+  </ul>
+
+  <h2>3) Só HTML (sem servidor)</h2>
+  <p><a href="ecossistema_cdu_presentation.html">ecossistema_cdu_presentation.html</a>: versão estática (comentário no ficheiro aponta para o código no Next).</p>
+
+  <p class="note">Se <code>localhost:3000</code> não abrir: confirma que o terminal mostrou “Ready” e que nenhuma firewall bloqueia a porta. No Cursor, usa <strong>Terminal → New Terminal</strong> e corre os comandos acima.</p>
+</body>
+</html>

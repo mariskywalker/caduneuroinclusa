@@ -1,0 +1,393 @@
+@import "tailwindcss";
+
+/* Satoshi (woff2 + https): não bloqueia o @import do Tailwind */
+@font-face {
+  font-family: "Satoshi";
+  src: url("https://cdn.fontshare.com/wf/D7WD5OXZFWQ5T76HSPWAC7MNKAJXE2YG/LUGNSPO5YC34ABNB2O6K7AFDSOJZT56V/WNDVG7O66ENLOD43GS7FBUCC4KMT5OM2.woff2")
+    format("woff2");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("https://cdn.fontshare.com/wf/TTX2Z3BF3P6Y5BQT3IV2VNOK6FL22KUT/7QYRJOI3JIMYHGY6CH7SOIFRQLZOLNJ6/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("https://cdn.fontshare.com/wf/P2LQKHE6KA6ZP4AAGN72KDWMHH6ZH3TA/ZC32TK2P7FPS5GFTL46EU6KQJA24ZYDB/7AHDUZ4A7LFLVFUIFSARGIWCRQJHISQP.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("https://cdn.fontshare.com/wf/LAFFD4SDUCDVQEXFPDC7C53EQ4ZELWQI/PXCT3G6LO6ICM5I3NTYENYPWJAECAWDD/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("https://cdn.fontshare.com/wf/NHPGVFYUXYXE33DZ75OIT4JFGHITX5PE/PSUTMASCDJTVPERDYJZPN23BVUFUCQIF/J64QX5IPOHK56I2KYUNBQ5M2XWZEYKYX.woff2")
+    format("woff2");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* Legacy map / presentation tokens */
+:root {
+  /* Satoshi (Fontshare; import no topo deste arquivo) */
+  --font-satoshi: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+
+  /* Paleta de marca (oficial) */
+  --brand-bg-light: #ffffff;
+  --brand-bg-dark: #032e4d;
+  --brand-accent-coral: #f9746e;
+  --brand-accent-blue: #4497c3;
+  --brand-accent-yellow: #f5bf42;
+  --brand-accent-mint: #5dc198;
+
+  /* Instituto: tokens semânticos (definidos em :root para o Tailwind @theme resolver sempre) */
+  --icu-canvas: #e4eef6;
+  --icu-surface: #ffffff;
+  --icu-muted: #d0e3f0;
+  --icu-ink: #032e4d;
+  --icu-ink-secondary: #1a4f6e;
+  --icu-ink-faint: #3d6d86;
+  --icu-border: #9ebfd4;
+  --icu-accent: #4497c3;
+  --icu-accent-soft: #cfe8f4;
+  --icu-warm: #f9746e;
+  --icu-warm-soft: #ffe4e1;
+  --icu-depth: #032e4d;
+  --icu-depth-foreground: #ffffff;
+  --icu-radius-sm: 6px;
+  --icu-radius-md: 10px;
+  --icu-radius-lg: 16px;
+  --icu-space-unit: 4px;
+  --icu-content-max: 72rem;
+  --icu-prose-max: 42rem;
+  --icu-header-h: 4rem;
+
+  /* Aliases tipográficos (classes .font-inst-* fora do pipeline Tailwind) */
+  --font-inst-sans: var(--font-satoshi);
+  --font-inst-serif: var(--font-satoshi);
+  --font-inst-mono: var(--font-satoshi);
+
+  --bg-deep: #0a0908;
+  --bg-elevated: #12100e;
+  --fg: #e6e2d8;
+  --fg-muted: #8f8a7e;
+  --fg-faint: #5c5850;
+  --line: rgba(230, 226, 216, 0.08);
+  --accent: #a67f72;
+  --accent-soft: rgba(166, 127, 114, 0.35);
+  --mist: rgba(230, 226, 216, 0.03);
+}
+
+@theme inline {
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-satoshi);
+  --font-serif: var(--font-satoshi);
+  --font-mono: var(--font-satoshi);
+
+  /* Instituto: ligado a var(--icu-*) em :root */
+  --color-icu-canvas: var(--icu-canvas);
+  --color-icu-surface: var(--icu-surface);
+  --color-icu-muted: var(--icu-muted);
+  --color-icu-ink: var(--icu-ink);
+  --color-icu-ink-secondary: var(--icu-ink-secondary);
+  --color-icu-ink-faint: var(--icu-ink-faint);
+  --color-icu-border: var(--icu-border);
+  --color-icu-accent: var(--icu-accent);
+  --color-icu-accent-soft: var(--icu-accent-soft);
+  --color-icu-depth: var(--icu-depth);
+  --color-icu-depth-foreground: var(--icu-depth-foreground);
+  --color-icu-warm: var(--icu-warm);
+  --color-icu-warm-soft: var(--icu-warm-soft);
+  --color-brand-mint: var(--brand-accent-mint);
+  --color-brand-yellow: var(--brand-accent-yellow);
+  --font-inst-sans: var(--font-satoshi);
+  --font-inst-serif: var(--font-satoshi);
+  --font-inst-mono: var(--font-satoshi);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Mapa do ecossistema (/mapa): sem scroll, fundo escuro */
+html.eco-map,
+html.eco-map body {
+  height: 100%;
+  max-height: 100dvh;
+  overflow: hidden;
+  background-color: var(--brand-bg-dark);
+  color: var(--fg);
+}
+
+html.eco-map body::before,
+html.eco-map body::after {
+  display: none !important;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--fg);
+  font-family: var(--font-satoshi);
+}
+
+body:has(.instituto-site) {
+  background-color: var(--icu-canvas);
+  color: var(--icu-ink);
+}
+
+/* Film + grain: apenas no mapa escuro (evita ruído no site claro) */
+html.eco-map body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.35;
+  background-image: radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      rgba(166, 127, 114, 0.07),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 80% 50% at 100% 100%,
+      rgba(90, 85, 78, 0.06),
+      transparent 50%
+    );
+  mix-blend-mode: screen;
+}
+
+html.eco-map body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 51;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Apresentação Master Plan (/plano): fundo claro */
+body:has(.presentation-root) {
+  background-color: #f7f5f0;
+  color: #18120e;
+}
+
+body:has(.presentation-root)::before,
+body:has(.presentation-root)::after {
+  display: none;
+}
+
+/* Instituto Casa do Urso: superfície de leitura (cores em :root) */
+.instituto-site {
+  background-color: var(--icu-canvas);
+  color: var(--icu-ink);
+  font-family: var(--font-inst-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.instituto-site :where(h1, h2, h3, h4) {
+  font-family: var(--font-satoshi);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.instituto-site :focus-visible {
+  outline: 2px solid var(--icu-accent);
+  outline-offset: 3px;
+}
+
+.instituto-site ::selection {
+  background: var(--icu-accent-soft);
+  color: var(--icu-ink);
+}
+
+.font-inst-serif {
+  font-family: var(--font-inst-serif);
+}
+
+.font-inst-mono {
+  font-family: var(--font-inst-mono);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@keyframes breath {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(2%, -1.5%);
+  }
+}
+
+.animate-breath {
+  animation: breath 14s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-breath,
+  .animate-drift {
+    animation: none !important;
+  }
+}
+
+.animate-drift {
+  animation: drift 28s linear infinite alternate;
+}
+
+/* —— Homepage premium (tons quentes, editorial) —— */
+.instituto-site.instituto-premium {
+  --premium-ink: #1a1512;
+  --premium-ink-secondary: rgba(26, 21, 18, 0.72);
+  --premium-ink-muted: rgba(26, 21, 18, 0.55);
+  --premium-ink-faint: rgba(26, 21, 18, 0.42);
+  --premium-terra: #b85c42;
+  --premium-sand: #ebe4d9;
+  --premium-mist: #f7f3ed;
+
+  --icu-canvas: var(--premium-sand);
+  --icu-surface: var(--premium-mist);
+  --icu-muted: #e2d8cb;
+  --icu-ink: var(--premium-ink);
+  --icu-ink-secondary: var(--premium-ink-secondary);
+  --icu-ink-faint: var(--premium-ink-faint);
+  --icu-border: rgba(26, 21, 18, 0.1);
+  --icu-accent: var(--premium-terra);
+  --icu-accent-soft: rgba(184, 92, 66, 0.16);
+  --icu-depth: #14100e;
+  --icu-depth-foreground: #f4efe8;
+  --icu-warm: #c4715c;
+  --icu-warm-soft: rgba(196, 113, 92, 0.14);
+}
+
+.instituto-site.instituto-premium :where(h1, h2, h3, h4) {
+  font-family: var(--font-premium-serif, var(--font-satoshi)), "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+}
+
+.font-premium-display {
+  font-family: var(--font-premium-serif, "Cormorant Garamond", Georgia, serif);
+}
+
+.premium-container {
+  width: 100%;
+  max-width: var(--icu-content-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 2rem);
+  padding-right: clamp(1.25rem, 4vw, 2rem);
+}
+
+.premium-hero-mesh {
+  background:
+    radial-gradient(ellipse 80% 55% at 20% 15%, rgba(184, 92, 66, 0.09), transparent 52%),
+    radial-gradient(ellipse 60% 45% at 85% 25%, rgba(139, 110, 80, 0.08), transparent 50%),
+    linear-gradient(165deg, #f2ebe2 0%, var(--premium-sand) 48%, #e4dcd2 100%);
+}
+
+.text-premium-ink {
+  color: var(--premium-ink);
+}
+.text-premium-ink-secondary {
+  color: var(--premium-ink-secondary);
+}
+.text-premium-ink-muted {
+  color: var(--premium-ink-muted);
+}
+.text-premium-ink-faint {
+  color: var(--premium-ink-faint);
+}
+
+@keyframes premium-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(2%, -1.5%) scale(1.03);
+  }
+}
+
+@keyframes premium-drift-reverse {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-2.5%, 2%) scale(1.04);
+  }
+}
+
+@keyframes premium-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+}
+
+.animate-premium-drift {
+  animation: premium-drift 22s ease-in-out infinite;
+}
+.animate-premium-drift-reverse {
+  animation: premium-drift-reverse 26s ease-in-out infinite;
+}
+.motion-safe\:animate-premium-nudge {
+  animation: premium-nudge 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-premium-drift,
+  .animate-premium-drift-reverse,
+  .motion-safe\:animate-premium-nudge {
+    animation: none !important;
+  }
+}

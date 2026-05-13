@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<!--
+  Migrado para o projeto Next.js (editar no Cursor com o assistente):
+  • Conteúdo: web/components/presentation/MasterPlanPresentation.tsx
+  • Estilos:  web/components/presentation/presentation.css
+  • Rota:     http://localhost:3000/plano  →  npm run dev dentro de /web
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecossistema Casa do Urso: Master Architecture Plan</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@800&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400,300&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+<style>
+  :root {
+    --bg: #F7F5F0;
+    --bg-card: #FFFFFF;
+    --bg-alt: #EFEDE8;
+    --text: #18120E;
+    --text-muted: #7A6E68;
+    --text-light: #B0A89E;
+    --coral: #F97470;
+    --coral-light: #FDE8E7;
+    --coral-mid: #FBBBB9;
+    --blue: #C8D4E8;
+    --blue-dark: #5F7CA8;
+    --blue-light: #EEF2F9;
+    --border: #E3DFDA;
+    --border-strong: #C8C0B8;
+    --ink: #2C1F18;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+
+  body {
+    font-family: 'Satoshi', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  .nav-dots {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border-strong);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+  }
+
+  .nav-dot.active {
+    background: var(--coral);
+    transform: scale(1.6);
+  }
+
+  .slide {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    padding: 5rem 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 2rem;
+  }
+
+  h1.display {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  h2.section-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  h3.card-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  p.lead {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 52ch;
+    font-weight: 400;
+  }
+
+  .cdu-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  #slide-cover {
+    background: var(--ink);
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 5rem 6rem;
+  }
+
+  #slide-cover .cover-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #slide-cover .slide-label { color: var(--coral-mid); }
+  #slide-cover h1.display { color: #fff; }
+  #slide-cover p.lead { color: rgba(255,255,255,0.72); max-width: 48ch; }
+
+  #slide-cover .cover-visual {
+    border-radius: 1rem;
+    background: linear-gradient(145deg, var(--blue-dark) 0%, var(--ink) 100%);
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #slide-cover .lottie-box {
+    width: min(100%, 360px);
+    height: 240px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    max-width: 900px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+    max-width: 1100px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 4px 24px rgba(44, 31, 24, 0.06);
+  }
+
+  .card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .flow-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    max-width: 1000px;
+  }
+
+  .flow-step {
+    background: var(--blue-light);
+    border: 1px solid var(--blue);
+    color: var(--blue-dark);
+    padding: 0.65rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .flow-arrow {
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  .metric {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 2rem;
+    color: var(--coral);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .timeline {
+    margin-top: 2rem;
+    border-left: 2px solid var(--border);
+    padding-left: 1.5rem;
+    max-width: 640px;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 1.75rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-1.5rem - 5px);
+    top: 0.35rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--coral);
+  }
+
+  .timeline-item strong {
+    display: block;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+
+  .timeline-item span {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .risk-list {
+    margin-top: 1.5rem;
+    max-width: 720px;
+  }
+
+  .risk-list li {
+    list-style: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .risk-list li::before {
+    content: '▸';
+    color: var(--coral);
+    margin-right: 0.75rem;
+    font-weight: 700;
+  }
+
+  #slide-proximos {
+    background: var(--bg-alt);
+  }
+
+  .cta-row {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.9rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover { opacity: 0.88; }
+
+  .btn-primary {
+    background: var(--coral);
+    color: #fff;
+  }
+
+  .btn-ghost {
+    background: var(--bg-card);
+    color: var(--ink);
+    border: 1px solid var(--border-strong);
+  }
+
+  @media (max-width: 900px) {
+    .slide { padding: 4rem 1.5rem; }
+    #slide-cover {
+      grid-template-columns: 1fr;
+      padding: 4rem 1.5rem;
+    }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .nav-dots { right: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav-dots" aria-label="Navegação entre slides">
+  <button type="button" class="nav-dot active" data-target="slide-cover" aria-label="Capa"></button>
+  <button type="button" class="nav-dot" data-target="slide-principio" aria-label="Princípio"></button>
+  <button type="button" class="nav-dot" data-target="slide-entidades" aria-label="Entidades"></button>
+  <button type="button" class="nav-dot" data-target="slide-flow" aria-label="Fluxo"></button>
+  <button type="button" class="nav-dot" data-target="slide-economia" aria-label="Economia"></button>
+  <button type="button" class="nav-dot" data-target="slide-governanca" aria-label="Governança"></button>
+  <button type="button" class="nav-dot" data-target="slide-riscos" aria-label="Riscos"></button>
+  <button type="button" class="nav-dot" data-target="slide-roadmap" aria-label="Roadmap"></button>
+  <button type="button" class="nav-dot" data-target="slide-proximos" aria-label="Próximos passos"></button>
+</nav>
+
+<section class="slide" id="slide-cover">
+  <div class="cover-left">
+    <p class="slide-label">Master architecture plan</p>
+    <h1 class="display">Ecossistema <span class="cdu-name">Casa do Urso</span></h1>
+    <p class="lead">Visão unificada de produtos, marca, governança e crescimento, para alinhar squads, parceiros e narrativa em torno da mesma arquitetura.</p>
+  </div>
+  <div class="cover-visual">
+    <div class="lottie-box" id="cover-lottie" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="slide" id="slide-principio">
+  <p class="slide-label">Princípio mestre</p>
+  <h2 class="section-title">Um ecossistema, muitas portas de entrada</h2>
+  <p class="lead">Cada frente (escola, clínica, família, tecnologia) compartilha a mesma promessa: clareza sobre o desenvolvimento da criança, com profundidade clínica e leveza no dia a dia.</p>
+</section>
+
+<section class="slide" id="slide-entidades">
+  <p class="slide-label">Entidades</p>
+  <h2 class="section-title">Camadas do ecossistema</h2>
+  <div class="grid-3">
+    <div class="card">
+      <h3 class="card-title">Marca &amp; narrativa</h3>
+      <p>Voz, posicionamento e histórias que conectam todas as unidades de negócio.</p>
+    </div>
+    <div class="card">
+      <h3 class="card-title">Produto &amp; dados</h3>
+      <p>Cadu como camada comum de registro, insights e continuidade entre contextos.</p>
+    </div>
+    <div class="card">
+      <h3 class="card-title">Operação &amp; pessoas</h3>
+      <p>Processos, formação e rituais que mantêm qualidade percebida em qualquer toque.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="slide-flow">
+  <p class="slide-label">Fluxo de valor</p>
+  <h2 class="section-title">Da captação à retenção</h2>
+  <p class="lead">Um funil contínuo onde confiança clínica alimenta adoção de produto e expansão orgânica.</p>
+  <div class="flow-row">
+    <span class="flow-step">Descoberta</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Experiência guiada</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Onboarding Cadu</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Hábito &amp; ROI</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Advocacy</span>
+  </div>
+</section>
+
+<section class="slide" id="slide-economia">
+  <p class="slide-label">Economia</p>
+  <h2 class="section-title">Alavancas de receita</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3 class="card-title">Assinaturas &amp; licenças</h3>
+      <p class="metric">MRR + expansão</p>
+      <p style="margin-top:0.75rem">Planos por cadeira, unidade ou rede, com upsell natural para módulos.</p>
+    </div>
+    <div class="card">
+      <h3 class="card-title">Serviços &amp; parcerias</h3>
+      <p class="metric">LTV conjunto</p>
+      <p style="margin-top:0.75rem">Implementação, formação certificada e co-brand com parceiros estratégicos.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="slide-governanca">
+  <p class="slide-label">Governança</p>
+  <h2 class="section-title">Como decidimos</h2>
+  <p class="lead">Fóruns por domínio (produto, clínica, marca) com cadência fixa; decisões documentadas e comunicadas ao ecossistema inteiro.</p>
+  <div class="grid-2" style="margin-top:1rem">
+    <div class="card">
+      <h3 class="card-title">North Star</h3>
+      <p>Métricas compartilhadas: adoção, qualidade percebida, retenção e saúde da comunidade.</p>
+    </div>
+    <div class="card">
+      <h3 class="card-title">Rituais</h3>
+      <p>Reviews trimestrais de portfólio, priorização transparente e critérios de encerramento de iniciativas.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="slide-riscos">
+  <p class="slide-label">Riscos</p>
+  <h2 class="section-title">O que monitoramos</h2>
+  <ul class="risk-list">
+    <li>Dispersão de mensagem entre unidades e canais digitais.</li>
+    <li>Complexidade técnica que atrase time-to-value do Cadu.</li>
+    <li>Dependência excessiva de poucos parceiros ou grandes contas.</li>
+    <li>Desalinhamento entre evidência clínica e promessa de marketing.</li>
+  </ul>
+</section>
+
+<section class="slide" id="slide-roadmap">
+  <p class="slide-label">Roadmap</p>
+  <h2 class="section-title">Onda 0 → 2</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <strong>Onda 0: Fundações</strong>
+      <span>Design system narrativo, contratos de dados entre produtos, piloto controlado.</span>
+    </div>
+    <div class="timeline-item">
+      <strong>Onda 1: Escala</strong>
+      <span>Playbooks por segmento, automações de onboarding, métricas em tempo real.</span>
+    </div>
+    <div class="timeline-item">
+      <strong>Onda 2: Rede</strong>
+      <span>Marketplace de serviços, integrações profundas, comunidade de prática.</span>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="slide-proximos">
+  <p class="slide-label">Próximos passos</p>
+  <h2 class="section-title">Para fechar este plano</h2>
+  <p class="lead">Validar prioridades com stakeholders, fixar orçamento por onda e nomear owners de cada entidade do mapa.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#slide-cover">Voltar ao início</a>
+    <span class="btn btn-ghost" style="cursor:default">Editar este HTML conforme o plano final</span>
+  </div>
+</section>
+
+<script>
+(function () {
+  var slides = [
+    'slide-cover', 'slide-principio', 'slide-entidades', 'slide-flow',
+    'slide-economia', 'slide-governanca', 'slide-riscos', 'slide-roadmap', 'slide-proximos'
+  ];
+  var dots = document.querySelectorAll('.nav-dot');
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var id = en.target.id;
+      dots.forEach(function (d) {
+        d.classList.toggle('active', d.getAttribute('data-target') === id);
+      });
+    });
+  }, { root: null, threshold: 0.55 });
+
+  slides.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+
+  dots.forEach(function (d) {
+    d.addEventListener('click', function () {
+      var t = document.getElementById(d.getAttribute('data-target'));
+      if (t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  /* Cole aqui um JSON Lottie público em `path:` ou `animationData` se quiser animação na capa */
+  var box = document.getElementById('cover-lottie');
+  if (box && window.lottie) {
+    box.innerHTML = '<span style="color:rgba(255,255,255,0.45);font-size:0.9rem;text-align:center;padding:1rem;display:block">Área reservada · Lottie</span>';
+  }
+})();
+</script>
+</body>
+</html>

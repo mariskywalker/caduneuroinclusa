@@ -1,0 +1,81 @@
+/**
+ * Estilos mínimos sem Tailwind: se o chunk principal falhar (rede, cache, bloqueio),
+ * o site continua legível e o menu não depende só de utilities.
+ */
+[data-surface="instituto"] {
+  box-sizing: border-box;
+  min-height: 100dvh;
+  background-color: #e4eef6;
+  color: #032e4d;
+}
+
+[data-surface="instituto"] *,
+[data-surface="instituto"] *::before,
+[data-surface="instituto"] *::after {
+  box-sizing: border-box;
+}
+
+[data-surface="instituto"] header {
+  position: sticky;
+  top: 0;
+  z-index: 120;
+  background: #ffffff;
+  border-bottom: 1px solid #9ebfd4;
+}
+
+[data-surface="instituto"] .icu-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.25rem;
+  min-height: 4rem;
+}
+
+@media (min-width: 640px) {
+  [data-surface="instituto"] .icu-header-inner {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Navegação desktop: visível em lg+ mesmo sem Tailwind */
+.icu-nav-desktop {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+@media (min-width: 1024px) {
+  .icu-nav-desktop {
+    display: flex;
+  }
+}
+
+.icu-header-actions {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .icu-header-actions {
+    display: flex;
+  }
+}
+
+.icu-mobile-nav-trigger {
+  display: inline-flex;
+}
+
+@media (min-width: 1024px) {
+  .icu-mobile-nav-trigger {
+    display: none;
+  }
+}
